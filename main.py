@@ -66,7 +66,7 @@ def push():
 		return "Can't verify signature", 500
 
 	username = r.text
-	if data['signature'] != signature(data['pushToken'], username, data['title'], data['body'], data['time']):
+	if data['signature'] != signature(data['pushToken'], username, data['title'], data['body'], time):
 		return "Invalid signature", 403
 
 	sendFirebase(data["pushToken"], data["title"], data["body"])
