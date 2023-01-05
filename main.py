@@ -52,7 +52,7 @@ def push():
 	time = currentDay + currentHour
 
 	# get username from schoolAPI
-	url = "https://"+data["schoolAPI"]+"/pushSignature"
+	url = data["schoolAPI"]+"/pushSignature"
 	r = requests.get(url)
 
 	if r.status_code != 200:
