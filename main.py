@@ -54,10 +54,10 @@ def push():
 	# get username from schoolAPI
 	url = data["schoolAPI"]+"/pushSignature"
 	args = {
-		"token": args['pushToken'],
-		"signature": args['signature'],
-		"title": args['title'],
-		"body": args['body']
+		"token": data['pushToken'],
+		"signature": data['signature'],
+		"title": data['title'],
+		"body": data['body']
 	}
 
 	r = requests.post(url, headers = {"Content-Type": "application/json"}, data = json.dumps(args))
