@@ -40,7 +40,7 @@ def push():
 	'''
 	data = json.loads(request.data)
 	
-	if not "pushToken" in data or not "username" in data or not "schoolAPI" in data or not "title" in data or not "body" in data or not "time" in data or not "signature" in data:
+	if not "pushToken" in data or not "schoolAPI" in data or not "title" in data or not "body" in data or not "signature" in data:
 		return "Missing parameters", 400
 
 	if config.requireSignature != True:
@@ -63,6 +63,7 @@ def push():
 		return "Invalid signature", 403
 
 	sendFirebase(data["pushToken"], data["title"], data["body"])
+	return "OK"
 
 
 if __name__ == "__main__":
