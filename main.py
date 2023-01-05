@@ -47,9 +47,9 @@ def push():
 		sendFirebase(data["pushToken"], data["title"], data["body"])
 		return "OK", 200
 	
+	currentDay = datetime.now().day
 	currentHour = datetime.now().hour
-	currentMinute = datetime.now().minute
-	time = currentHour + currentMinute
+	time = currentDay + currentHour
 
 	# get username from schoolAPI
 	url = "https://"+data["schoolAPI"]+"/pushSignature"
