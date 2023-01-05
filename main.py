@@ -18,9 +18,9 @@ def sendFirebase(token, title, content):
 		requests.post("https://fcm.googleapis.com/fcm/send", headers = {"Content-Type": "application/json", "Authorization": "key="+config.googleFCM}, data = json.dumps(data))
 
 def signature(pushToken, username, title, body, time):
-	# create sha256 signature 
+	# create sha256 signature
 	signature = hashlib.sha256()
-	signature.update(pushToken+username+title+body+time)
+	signature.update( (pushToken+username+title+body+str(time)).encode() )
 	return signature.hexdigest()
 
 @app.route('/')
