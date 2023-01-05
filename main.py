@@ -69,6 +69,9 @@ def push():
 	if data['signature'] != signature(data['pushToken'], username, data['title'], data['body'], time):
 		return "Invalid signature", 403
 
+	if len(data['pushToken'].split("|")) == 2:
+		data['pushToken'] = data['pushToken'].split("|")[1]
+
 	sendFirebase(data["pushToken"], data["title"], data["body"])
 	return "OK"
 
