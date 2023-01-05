@@ -53,7 +53,14 @@ def push():
 
 	# get username from schoolAPI
 	url = data["schoolAPI"]+"/pushSignature"
-	r = requests.get(url)
+	args = {
+		"token": args['pushToken'],
+		"signature": args['signature'],
+		"title": args['title'],
+		"body": args['body']
+	}
+
+	r = requests.post(url, headers = {"Content-Type": "application/json"}, data = json.dumps(args))
 
 	if r.status_code != 200:
 		return "Can't verify signature", 500
