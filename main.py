@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 from flask import Flask, request
 import requests
 import hashlib
@@ -47,8 +47,8 @@ def push():
 		sendFirebase(data["pushToken"], data["title"], data["body"])
 		return "OK", 200
 	
-	currentDay = datetime.now().day
-	currentHour = datetime.now().hour
+	currentDay = datetime.now(timezone.utc).day
+	currentHour = datetime.now(timezone.utc).hour
 	time = currentDay + currentHour
 
 	# get username from schoolAPI
